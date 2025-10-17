@@ -29,7 +29,8 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 # דומיינים מותרים (מופרדים בפסיקים). לדוגמה: "myapp.onrender.com,mydomain.com"
 ALLOWED_HOSTS = [h for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if h]
-
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = ["https://sitebus.onrender.com"]
 # -------------------------------------------------------------------
 # Applications
 # -------------------------------------------------------------------
@@ -117,7 +118,7 @@ CONTACT_RECIPIENT = os.getenv("CONTACT_RECIPIENT", "hanativhamaher1@gmail.com")
 # -------------------------------------------------------------------
 # Cloudinary – אחסון מדיה בענן
 # -------------------------------------------------------------------
-# אפשר גם להשתמש במשתנה יחיד CLOUDINARY_URL=cloudinary://key:secret@cloudname
+# אפשר גם להשתמש במשתנה יחיד CLOUDINARY_URL=cloudinary://key:securet@cloudname
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
     "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
