@@ -1,0 +1,7 @@
+django==5.1.5
+gunicorn
+whitenoise
+pillow
+python-dotenv
+cloudinary
+django-cloudinary-storage

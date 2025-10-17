@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block content %}
+<section class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">{{ cat.name }}</h1>
+    {% if can_manage %}
+      <a class="btn btn-outline-primary" href="{% url 'manage_gallery' cat.slug %}">נהל גלריה</a>
+    {% endif %}
+  </div>
+
+  {% if photos %}
+    <div class="row g-4">
+      {% for p in photos %}
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.caption }}">
+            {% if p.caption %}<div class="card-body"><p class="card-text">{{ p.caption }}</p></div>{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">אין תמונות עדיין.</div>
+  {% endif %}
+</section>
+{% endblock %}

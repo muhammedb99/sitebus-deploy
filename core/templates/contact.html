@@ -1,0 +1,49 @@
+{% extends "base.html" %}{% block content %}
+<section class="container py-5">
+  <h1 class="mb-4">צור קשר</h1>
+  {% if sent %}
+    <div class="alert alert-success">ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.</div>
+  {% endif %}
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="list-group">
+        
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">מוחמד עואד</div>
+          </div>
+          <span class="bi bi-telephone"></span>
+        </div>
+        
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">טלפון</div>
+            <div>0522400856</div>
+          </div>
+          <span class="bi bi-telephone"></span>
+        </div>
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">דוא"ל</div>
+            <div>hanativhamaher1@gmail.com</div>
+          </div>
+          <span class="bi bi-envelope"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form method="post" class="border rounded p-3 bg-light">
+        {% csrf_token %}
+        <div class="row g-2">
+          <div class="col-md-6"><input name="full_name" class="form-control" placeholder="שם מלא" required></div>
+          <div class="col-md-6"><input name="phone" class="form-control" placeholder="טלפון" required></div>
+          <div class="col-12"><input name="email" class="form-control" type="email" placeholder="אימייל" required></div>
+          <div class="col-12"><textarea name="message" class="form-control" rows="5" placeholder="ספר לנו על הפרויקט שלך..." required></textarea></div>
+        </div>
+        <button class="btn btn-primary mt-3 w-100">שלח הודעה</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+:root{--primary:#0b5ed7;}
+*{font-family:"Heebo",Arial,sans-serif}
+.bg-body{background:#f8fafc}
+.navbar .btn{border-radius:.5rem}
+.hero {
+  min-height: 70vh;
+  background-image: 
+    linear-gradient(rgba(0, 30, 60, 0.55), rgba(0, 30, 60, 0.55)),
+    url("https://res.cloudinary.com/df2zhh6pa/image/upload/v1760718738/%D7%A8%D7%A7%D7%A2_z0tumn.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-service .card-img-top{height:210px;object-fit:cover}
+.footer-quick a{color:#0d6efd;text-decoration:none}
+.footer-quick a:hover{text-decoration:underline}

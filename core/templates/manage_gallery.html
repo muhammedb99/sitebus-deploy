@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block content %}
+<section class="container py-5">
+  <h1 class="mb-4">ניהול גלריה – {{ cat.name }}</h1>
+
+  <form method="post" enctype="multipart/form-data" class="mb-4 border rounded p-3 bg-light">
+    {% csrf_token %}
+    <div class="row g-2 align-items-end">
+      <div class="col-md-6">{{ form.image.label_tag }}{{ form.image }}</div>
+      <div class="col-md-4">{{ form.caption.label_tag }}{{ form.caption }}</div>
+      <div class="col-md-2"><button class="btn btn-primary w-100">העלה</button></div>
+    </div>
+  </form>
+
+  <div class="row g-4">
+    {% for p in photos %}
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.caption }}">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <small class="text-muted">{{ p.caption }}</small>
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="delete" value="{{ p.id }}">
+              <button class="btn btn-outline-danger btn-sm">מחק</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
