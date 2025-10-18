@@ -1,13 +1,22 @@
-{% extends "base.html" %}{% block content %}
+{% extends "base.html" %}
+
+{% block head %}
+  {{ block.super }}
+  <meta name="google-site-verification" content="enYQ2CAM3OGBHV1x0O_FVWYPhPQ0VKASBAEcLwwlofE" />
+{% endblock %}
+
+{% block content %}
 <header class="hero d-flex align-items-center text-center text-white">
   <div class="container">
     <h1 class="display-4 fw-bold mb-3">הנתיב המהיר</h1>
-    <p class="lead mb-4">מומחים בהתקנה ואחזקה של תחנות אוטובוס, ניקיון תחנות אוטובוס, צבע תחנות אוטובוס, הובלות ועבודות מיני באגר.</p>
+    <p class="lead mb-4">
+      מומחים בהתקנה ואחזקה של תחנות אוטובוס, ניקיון תחנות אוטובוס, צבע תחנות אוטובוס, הובלות ועבודות מיני באגר.
+    </p>
     <div class="d-flex justify-content-center gap-3">
       <a href="/services/" class="btn btn-light btn-lg">הצג שירותים</a>
       <a href="/contact/" class="btn btn-outline-light btn-lg">צור קשר</a>
     </div>
-    <div class="mt-4 fs-4">מס טלפון: 0522400856 </div>
+    <div class="mt-4 fs-4">מס טלפון: 0522400856</div>
   </div>
 </header>
 
@@ -19,8 +28,8 @@
         <a href="{% url 'category_detail' c.slug %}" class="text-decoration-none">
           <div class="card card-service h-100 shadow-sm">
             <img
-  src="{% if c.cover_photo %}{{ c.cover_photo.image.url }}{% else %}https://placehold.co/600x360?text={{ c.name }}{% endif %}"
-  class="card-img-top" alt="">
+              src="{% if c.cover_photo %}{{ c.cover_photo.image.url }}{% else %}https://placehold.co/600x360?text={{ c.name }}{% endif %}"
+              class="card-img-top" alt="">
             <div class="card-body">
               <h5 class="card-title">{{ c.name }}</h5>
               <p class="card-text">{{ c.description|default:"" }}</p>
