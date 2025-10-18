@@ -40,3 +40,4 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f"Superuser '{username}' updated."))
             else:
                 self.stdout.write(f"Superuser '{username}' already exists; no update.")
+                
