@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    "anymail",
     "cloudinary",
     "cloudinary_storage",
 
@@ -102,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Email (Gmail SMTP – נדרש App Password)
 # -------------------------------------------------------------------
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+ANYMAIL = {
+    "SENDGRID_API_KEY": os.getenv("SENDGRID_API_KEY"),
+}
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

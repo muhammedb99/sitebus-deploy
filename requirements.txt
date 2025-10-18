@@ -5,3 +5,4 @@ pillow
 python-dotenv
 cloudinary
 django-cloudinary-storage
+django-anymail[sendgrid]
