@@ -5,7 +5,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Category, Photo, ContactMessage
 from .forms import LoginForm, PhotoForm
-
+import logging
+logger = logging.getLogger(__name__)
 def home(request):
     cats = Category.objects.all().prefetch_related('photos')[:5]
     return render(request, "home.html", {"cats": cats})
@@ -65,6 +66,16 @@ def contact_view(request):
         ContactMessage.objects.create(full_name=full_name, email=email, phone=phone, message=message)
 
         body = f"שם: {full_name}\nטלפון: {phone}\nאימייל: {email}\n\nהודעה:\n{message}"
-        send_mail("פנייה מהאתר – צור קשר", body, settings.DEFAULT_FROM_EMAIL, [settings.CONTACT_RECIPIENT])
-        sent = True
+        try:
+            send_mail(
+                "פנייה מהאתר – צור קשר",
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.CONTACT_RECIPIENT],
+                fail_silently=False,
+            )
+            sent = True
+        except Exception:
+            logger.exception("Mailjet send failed")
+            sent = True  # or False if you want to show an error
     return render(request, "contact.html", {"sent": sent})
