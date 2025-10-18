@@ -27,7 +27,6 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key-change-me")
 # DEBUG: בפרודקשן לקבוע DEBUG=False ב-ENV
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-# דומיינים מותרים (מופרדים בפסיקים). לדוגמה: "myapp.onrender.com,mydomain.com"
 ALLOWED_HOSTS = [h for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if h]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = ["https://sitebus-deploy.onrender.com"]
@@ -42,18 +41,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Media storage
     "cloudinary",
     "cloudinary_storage",
 
-    # Your app
     "core",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    # אם תשתמש ב-WhiteNoise לפרודקשן, הוסף כאן:
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -67,7 +63,6 @@ ROOT_URLCONF = "sitebus.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # כך דג'אנגו ימצא את התבניות שב-core/templates
         "DIRS": [BASE_DIR / "core" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -110,8 +105,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # למשל: hanativhamaher1@gmail.com
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # ה-App Password בלי רווחים
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER or "webmaster@localhost"
 CONTACT_RECIPIENT = os.getenv("CONTACT_RECIPIENT", "hanativhamaher1@gmail.com")
 
