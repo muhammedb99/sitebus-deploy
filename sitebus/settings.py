@@ -30,7 +30,7 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 # דומיינים מותרים (מופרדים בפסיקים). לדוגמה: "myapp.onrender.com,mydomain.com"
 ALLOWED_HOSTS = [h for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if h]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-CSRF_TRUSTED_ORIGINS = ["sitebus-deploy.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://sitebus-deploy.onrender.com"]
 # -------------------------------------------------------------------
 # Applications
 # -------------------------------------------------------------------
